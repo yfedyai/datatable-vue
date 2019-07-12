@@ -7,39 +7,41 @@
         <v-spacer></v-spacer>
         <v-text-field v-model="search" append-icon="search" label="Search" single-line hide-details></v-text-field>
         <v-dialog v-model="dialog" max-width="500px">
-          <v-card>
-            <v-card-title>
-              <span class="headline">Edit</span>
-            </v-card-title>
-            <v-card-text>
-              <v-container >
-                <v-layout column wrap>
-                  <v-flex xs12 sm6 md6>
-                    <v-text-field v-model="editedItem.id" label="Id" disabled></v-text-field>
-                  </v-flex>
-                  <v-flex xs12 sm6 md6>
-                    <v-text-field v-model="editedItem.name" label="Name" :rules="nameRules"></v-text-field>
-                  </v-flex>
-                  <v-flex xs12 sm6 md6>
-                    <v-text-field v-model="editedItem.location" label="Location" :rules="nameRules"></v-text-field>
-                  </v-flex>
-                  <v-flex xs12 sm6 md6>
-                    <v-text-field
-                      type="number"
-                      v-model="editedItem.currency"
-                      label="Currency"
-                      :rules="currencyRules"
-                    ></v-text-field>
-                  </v-flex>
-                </v-layout>
-              </v-container>
-            </v-card-text>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn color="blue darken-1" flat @click="close">Cancel</v-btn>
-              <v-btn color="blue darken-1" flat @click="save">Save</v-btn>
-            </v-card-actions>
-          </v-card>
+          <v-form ref="form">
+            <v-card>
+              <v-card-title>
+                <span class="headline">Edit</span>
+              </v-card-title>
+              <v-card-text>
+                <v-container >
+                  <v-layout column wrap >
+                    <v-flex xs12 sm6 md6>
+                      <v-text-field v-model="editedItem.id" label="Id" disabled></v-text-field>
+                    </v-flex>
+                    <v-flex xs12 sm6 md6>
+                      <v-text-field v-model="editedItem.name" label="Name" :rules="nameRules"></v-text-field>
+                    </v-flex>
+                    <v-flex xs12 sm6 md6>
+                      <v-text-field v-model="editedItem.location" label="Location" :rules="nameRules"></v-text-field>
+                    </v-flex>
+                    <v-flex xs12 sm6 md6>
+                      <v-text-field
+                        type="number"
+                        v-model="editedItem.currency"
+                        label="Currency"
+                        :rules="currencyRules"
+                      ></v-text-field>
+                    </v-flex>
+                  </v-layout>
+                </v-container>
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="blue darken-1" flat @click="close">Cancel</v-btn>
+                <v-btn color="blue darken-1" flat @click="save" >Save</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-form>
         </v-dialog>
       </v-toolbar>
       <v-data-table
@@ -129,8 +131,10 @@ export default {
       this.dialog = false;
     },
     save() {
-      Object.assign(this.lists[this.editedIndex], this.editedItem);
-      this.close();
+      if(this.$refs.form.validate()) { 
+        Object.assign(this.lists[this.editedIndex], this.editedItem);
+        this.close();
+      }
     }
   },
   created() {
