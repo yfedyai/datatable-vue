@@ -1,5 +1,7 @@
 # Live-editing datatable on Vue Js
 data parsed from local json file using axios
+[DEMO](https://github.com/user/repo/blob/branch/other_file.md)
+![image](https://user-images.githubusercontent.com/33098616/61120085-d19f9880-a4a4-11e9-9c6e-f35b8433f8e7.png)
 
 ## Project setup
 ```
