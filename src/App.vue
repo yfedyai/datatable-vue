@@ -12,8 +12,8 @@
               <span class="headline">Edit</span>
             </v-card-title>
             <v-card-text>
-              <v-container>
-                <v-layout wrap>
+              <v-container >
+                <v-layout column wrap>
                   <v-flex xs12 sm6 md6>
                     <v-text-field v-model="editedItem.id" label="Id" disabled></v-text-field>
                   </v-flex>
