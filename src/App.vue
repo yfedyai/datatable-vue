@@ -86,7 +86,7 @@ export default {
     editedItem: {},
     nameRules: [
       v => !!v || "This field is required",
-      v => (v && v.length <= 10) || "This field be less than 10 characters"
+      v => (v && v.length <= 15) || "This field be less than 15 characters"
     ],
     currencyRules: [
       v => !!v || "this field is required",
