@@ -15,7 +15,6 @@ export default new Vuex.Store({
       return state.data
     },
     loading: state => {
-      console.log(state.loading)
       return state.loading
     }
   },
