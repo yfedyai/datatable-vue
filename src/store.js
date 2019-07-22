@@ -29,15 +29,14 @@ export default new Vuex.Store({
   },
   actions: {
     async getData ({ commit }) {
-      await Axios.get('/test.json')
-        .then(response => {
-          commit('setData', response.data)
-          commit('setLoading', false)
-        })
-        .catch(err => {
-          console.log(err)
-          throw err
-        })
+      try {
+        const response = await Axios.get('/test.json')
+        commit('setData', response.data)
+        commit('setLoading', false)
+      } catch (err) {
+        console.log(err)
+        throw err
+      }
     }
   }
 })
